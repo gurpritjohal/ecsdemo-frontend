@@ -20,11 +20,13 @@ class ApplicationController < ActionController::Base
       if res.code == '200'
         @text = res.body
       else
+        logger.info "no backend found"
         @text = "no backend found"
       end
 
     rescue => e
       logger.error e.message
+      logger.error e
       @text = "no backend found"
     end
 
