@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
     rescue => e
       logger.error e.message
       logger.error e
+      logger.info "no backend found"
       @text = "no backend found"
     end
 
@@ -41,11 +42,14 @@ class ApplicationController < ActionController::Base
       if crystalres.code == '200'
         @crystal = crystalres.body
       else
+        logger.info "no backend found"
         @crystal = "no backend found"
       end
 
     rescue => e
       logger.error e.message
+      logger.error e
+      logger.info "no backend found"
       @crystal = "no backend found"
     end
   end
