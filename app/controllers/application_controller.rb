@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   def index
     begin
       req = Net::HTTP::Get.new(nodejs_uri.to_s)
+      logger.info "uri nodejs path:#{nodejs_uri.to_s}"
       res = Net::HTTP.start(nodejs_uri.host, nodejs_uri.port, :use_ssl => nodejs_uri.scheme == 'https') {|http|
         http.read_timeout = 2
         http.open_timeout = 2
@@ -33,6 +34,7 @@ class ApplicationController < ActionController::Base
 
     begin
       crystalreq = Net::HTTP::Get.new(crystal_uri.to_s)
+      logger.info "uri crystal path:#{crystal_uri.to_s}"
       crystalres = Net::HTTP.start(crystal_uri.host, crystal_uri.port, :use_ssl => crystal_uri.scheme == 'https') {|http|
         http.read_timeout = 2
         http.open_timeout = 2
